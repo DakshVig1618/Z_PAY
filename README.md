@@ -1,97 +1,143 @@
-# Z PAY – Expense Categorization (ML)
+# Z PAY -- Intelligent UPI Analytics Platform
 
-This repository contains the **machine learning expense categorization engine**
-for the **Z PAY UPI application**.
+**Z PAY** is a machine‑learning powered financial analytics system
+designed to enhance traditional UPI transaction systems.
 
-The goal of this module is to automatically categorize transaction descriptions  
-(e.g. `ZMT ORD`, `UBR TRIP`, `AMZN MKTP`) into meaningful expense categories such as:
+The goal of the project is to build a **smart backend engine** capable
+of analyzing transaction data and generating meaningful insights such
+as:
 
-- Food  
-- Travel  
-- Shopping  
-- Subscriptions  
-- Entertainment  
-- Other  
+• Automatic expense categorization\
+• Fraud risk detection\
+• Behavioral transaction analysis
 
-This project focuses on building a **realistic ML pipeline**, not just training a model.
+Instead of relying on rigid rule‑based systems, Z PAY uses **machine
+learning models and data pipelines** to understand patterns in financial
+transactions.
 
----
+The long‑term vision is to build a **modern fintech intelligence layer**
+that can sit on top of payment platforms and provide smarter financial
+insights.
 
-## ✨ What this project does
+------------------------------------------------------------------------
 
-- Works with **partially labeled transaction data**
-- Avoids rule-based categorization
-- Trains a machine learning model using human-labeled samples
-- Predicts categories for unlabeled transactions
-- Preserves human labels and fills missing values using ML
-- Produces a final, fully categorized dataset ready for use
+# Core Machine Learning Modules
 
----
+The current system contains two major ML pipelines.
 
-## 🧠 How the pipeline works
+------------------------------------------------------------------------
 
-1. Load raw transaction data  
-2. Separate labeled and unlabeled transactions  
-3. Convert transaction descriptions into numerical features using **TF-IDF**  
-4. Train a **Logistic Regression** model on labeled data  
-5. Evaluate the model on unseen test data  
-6. Predict categories for unlabeled transactions  
-7. Merge human labels with ML predictions safely  
-8. Save the final processed dataset  
+## 1️⃣ Expense Categorization Model
 
----
+This model automatically categorizes raw transaction descriptions into
+meaningful expense categories.
 
-## 📊 Results (current)
+Example:
 
-- Trained using **~70 human-labeled transactions**
-- Achieved **~94% accuracy** on a held-out test set (**18 samples**)
-- Automatically predicted categories for **~530 unlabeled transactions**
+ZMT ORD → Food\
+UBR TRIP → Travel\
+AMZN MKTP → Shopping
 
-> The focus is on correctness, data handling, and pipeline design  
-> rather than maximizing accuracy on a small dataset.
+### How it works
 
----
+1.  Raw transaction descriptions are processed
+2.  Text is converted into numerical features using **TF‑IDF**
+3.  A **Logistic Regression model** learns patterns from human‑labeled
+    data
+4.  The model predicts categories for unlabeled transactions
+5.  Human labels are preserved while missing values are filled using ML
+
+### Achievements
+
+• Trained using **\~70 human‑labeled transactions**\
+• Achieved **\~94% accuracy on a held‑out test set**\
+• Automatically categorized **\~530 previously unlabeled transactions**
+
+This model forms the **foundation of spending analytics** in the system.
+
+------------------------------------------------------------------------
+
+## 2️⃣ Fraud Detection Model
+
+This module detects suspicious financial transactions using a **hybrid
+anomaly detection system**.
+
+Unlike traditional fraud systems that require labeled fraud cases, this
+pipeline works even when fraud labels are unavailable.
+
+### How it works
+
+1.  Transaction features are engineered from the dataset
+    (amount, time, location, device, category)
+2.  **Isolation Forest** detects anomalous transactions
+3.  Detected anomalies are used as **pseudo fraud labels**
+4.  A **Random Forest classifier** learns patterns from these anomalies
+5.  The model generates:\
+      • fraud probability scores\
+      • fraud flags\
+      • human‑readable fraud explanations
+
+Example explanation:
+
+High transaction amount, Late‑night transaction
+
+### Achievements
+
+• Analyzed **\~600 financial transactions**\
+• Detected **\~5% anomalous transactions**\
+• Generated **fraud risk scores for every transaction**
+
+This allows the system to simulate **real‑world fraud monitoring
+pipelines**.
+
+------------------------------------------------------------------------
 
 ## 📁 Folder structure
 
-z-pay-expense-categorization/<br>
-│<br>
-├── models/<br>
-│ └── expense_model.py # ML pipeline code<br>
-│<br>
+Z_PAY/<br>
 ├── data/<br>
-│ ├── raw/ # original datasets (untouched)<br>
+│ ├── raw/ \# original datasets (untouched)<br>
 │ │ ├── categories.csv<br>
 │ │ ├── transactions.csv<br>
 │ │ └── users.csv<br>
 │ │<br>
-│ └── processed/ # ML-generated output<br>
-│ &emsp;└── transactions_final.csv
+│ └── processed/ \# ML‑generated datasets<br>
+│   ├── transactions_final.csv<br>
+│   └── transactions_with_fraud.csv<br>
+│<br>
+├── models/<br>
+│ ├── expense_model.py \# expense categorization pipeline<br>
+│ └── fraud_detection.py \# fraud detection pipeline<br>
+│<br>
+├── README.md<br>
+└── requirements.txt<br>
 
----
+------------------------------------------------------------------------
 
 ## 🛠️ Tech stack
 
-- Python  
-- Pandas  
-- scikit-learn  
+-   Python
+-   Pandas
+-   scikit‑learn
+-   TF‑IDF (NLP feature extraction)
+-   Logistic Regression
+-   Isolation Forest
+-   Random Forest
 
----
+------------------------------------------------------------------------
 
 ## 🚧 Project status
 
-✅ Expense categorization pipeline completed  
+✅ Expense categorization ML pipeline\
+✅ Fraud detection hybrid model\
+✅ Transaction analysis dataset generation
 
 🔜 Planned extensions:
-- Confidence scores for predictions
-- Model persistence (save / load)
-- Fraud detection module
-- Backend & database integration
 
----
+• FastAPI backend for real‑time transaction analysis\
+• Offer recommendation engine based on spending patterns\
+• User expense analytics dashboard\
+• Improved fraud detection models\
 
-## ℹ️ Note
-
-This repository represents **only the ML component** of the Z PAY project.  
-Other components such as backend services, APIs, and frontend applications
-will be developed separately.
+The long‑term goal is to build a **complete intelligent financial
+assistant built on top of transaction data**.

@@ -1,4 +1,4 @@
-# Z PAY -- Intelligent UPI Analytics Platform
+# Z PAY -- Intelligent UPI Analytics System
 
 **Z PAY** is a machine‑learning powered financial analytics system
 designed to enhance traditional UPI transaction systems.

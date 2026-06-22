@@ -14,10 +14,6 @@ Instead of relying on rigid rule‑based systems, Z PAY uses **machine
 learning models and data pipelines** to understand patterns in financial
 transactions.
 
-The long‑term vision is to build a **modern fintech intelligence layer**
-that can sit on top of payment platforms and provide smarter financial
-insights.
-
 ------------------------------------------------------------------------
 
 # Core Machine Learning Modules
